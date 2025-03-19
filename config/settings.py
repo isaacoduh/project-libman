@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'users',
     'library'
 ]
 
@@ -93,7 +94,7 @@ DATABASES = {
 }
 
 
-AUTH_USER_MODEL = 'libray.User'
+AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
