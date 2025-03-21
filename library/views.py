@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
 from .models import Book, Loan
-from .serializers import BookSerializer, LoanSerializer
+from .serializers import BookSerializer, LoanSerializer, ReturnBookSerializer
 
 
 class BookPagination(PageNumberPagination):
@@ -39,7 +39,7 @@ class BorrowBookView(generics.CreateAPIView):
 
 class ReturnBookView(generics.UpdateAPIView):
     """API to return a borrowed book"""
-    serializer_class = LoanSerializer
+    serializer_class = ReturnBookSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):

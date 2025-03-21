@@ -11,6 +11,9 @@ class Book(models.Model):
     page_count = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ['title']
+
     def __str__(self):
         return f"{self.title} by {self.author}"
 

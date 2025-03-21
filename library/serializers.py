@@ -22,7 +22,11 @@ class LoanSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Handles borrowing a book"""
-        user = self.context['request'].user
+
+        request = self.context.get('request')
+        if not request or not request.user.is_authenticated:
+            raise serializers.ValidationError("User must be authenticated to borrow a book.")
+        user = request.user
         book_id = validated_data.pop('book_id')
 
         # check if book exists
@@ -36,7 +40,7 @@ class LoanSerializer(serializers.ModelSerializer):
 
         # mark book as unavailable
         book.available = False
-        book.save()
+        book.save(update_fields=['available'])
 
         return loan
 
@@ -49,8 +53,30 @@ class LoanSerializer(serializers.ModelSerializer):
         # set book availability
         book = instance.book
         book.available = True
-        book.save()
+        book.save(update_fields=['available'])
 
         instance.save()
         return instance
 
+
+class ReturnBookSerializer(serializers.ModelSerializer):
+    """Serializer for returning a borrowed book"""
+
+    class Meta:
+        model = Loan
+        fields = ["returned_at"]
+
+    def update(self, instance, validated_data):
+        """Handle returning a book"""
+        if instance.returned_at:
+            raise serializers.ValidationError('This book has already been returned!')
+
+        instance.returned_at = timezone.now()
+
+        # Mark the book as available again
+        book = instance.book
+        book.available = True
+        book.save(update_fields=['available'])
+
+        instance.save()
+        return instance
