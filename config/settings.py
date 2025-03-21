@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-z*)&u$7y9lhi0w#@9=e0l)qj9o7nt5uzhgprcxo=*+b8(3zckd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,18 +80,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'libman_dev',
-    #     'USER': 'isaacoduh',
-    #     'PASSWORD': 'root',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432'
-    # }
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',      # Match the POSTGRES_DB in docker-compose
