@@ -38,7 +38,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', lambda request: HttpResponse(
-        "<h1>Welcome to the Library Management System!</h1><p>Click <a href='/redoc'>here</a> to view the API documentation.</p>")),
+        "<h1>Welcome to the Library Management System!</h1><p>Click <a href='/swagger'>here</a> to view the API documentation.</p>")),
     path("admin/", admin.site.urls),
     path('api/users/', include('users.urls')),
     path('api/library/', include('library.urls')),
