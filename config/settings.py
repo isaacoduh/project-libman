@@ -84,13 +84,21 @@ DATABASES = {
     #     "ENGINE": "django.db.backends.sqlite3",
     #     "NAME": BASE_DIR / "db.sqlite3",
     # }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'libman_dev',
+    #     'USER': 'isaacoduh',
+    #     'PASSWORD': 'root',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432'
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'libman_dev',
-        'USER': 'isaacoduh',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': 'postgres',      # Match the POSTGRES_DB in docker-compose
+        'USER': 'postgres',      # Match the POSTGRES_USER in docker-compose
+        'PASSWORD': 'postgres',  # Match the POSTGRES_PASSWORD in docker-compose
+        'HOST': 'db',            # The service name of the database in docker-compose
+        'PORT': '5432',
     }
 }
 
